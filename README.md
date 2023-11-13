@@ -14,3 +14,4 @@ npm install webpack webpack-cli --save-dev
 - [代码分离](05), 动态导入, 提取第三方公共代码
 - [创建自己的库](06), 生产环境和开发环境配置分开
 - [使用typescript](07), 使用ts
+- [使用tailwind](08),tailwindcss
