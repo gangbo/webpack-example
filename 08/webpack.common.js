@@ -1,6 +1,6 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require('webpack');
 
 module.exports = {
@@ -16,8 +16,14 @@ module.exports = {
         hot: true
       },
     plugins: [
-        new miniCssExtractPlugin(),
+        new MiniCssExtractPlugin(),
         new webpack.HotModuleReplacementPlugin(),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'src/index.html', to: '' },
+                // 可以添加更多的文件复制配置
+            ],
+        }),
     ],
     module: {
         rules: [
@@ -34,7 +40,7 @@ module.exports = {
                 use: [
                     'style-loader',
                     {
-                        loader: miniCssExtractPlugin.loader
+                        loader: MiniCssExtractPlugin.loader
                     },
                     {
                         loader: 'css-loader',
@@ -50,16 +56,5 @@ module.exports = {
             }
         ],
     },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
-    },
-    plugins: [
-        new CopyWebpackPlugin({
-            patterns: [
-                { from: 'src/index.html', to: '' },
-                // 可以添加更多的文件复制配置
-            ],
-        }),
-    ],
 
 };
